@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<app-user-nav-bar></app-user-nav-bar>
+<br><br> <br>
+
+
+
+<div *ngIf="cartItems.length === 0" class="container">
+  <h1>Your Cart is Empty</h1>
+  <p>You haven't added any items to your cart yet.</p>
+  <div class="button-container">
+    <button class="button" routerLink="/products">Start Shopping</button>
+  </div>
+</div>
+
+<div *ngIf="cartItems.length > 0">
+  <h5 style="margin-left: 30px;">Your Cart</h5>
+  <div class="cart-container">
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cartItems">
+          <td>
+            <div class="product-info">
+
+              <img [src]="'https://localhost:44366/api/Products/GetProductImage/' + item.product.productId" alt="{{ item.product.product_Name }}" />
+              <div class="product-details">
+                <p>{{ item.product.product_Name }}</p>
+                <button class="remove-btn" (click)="removeProductfromCart(item.product)"><i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+            </div>
+          </td>
+          <td>&#8377; {{ item.product.unitPrice }}</td>
+          <td>
+            <div class="quantity-control">
+              <button class="quantity-btn" (click)="decrementQuantity(item.product)">-</button>
+              <input type="number" class="quantity-input" [value]="item.quantity" [disabled]="true">
+              <button class="quantity-btn" (click)="incrementQuantity(item.product)">+</button>
+            </div>
+          </td>
+          <td>&#8377; {{ item.product.unitPrice * item.quantity }}</td>
+        </tr>
+        <tr style="font-weight: bold;">
+
+          <td colspan="3" class="text-right">Total Cart Price</td>
+          <td>&#8377; {{ getTotalCartPrice() }}</td>
+
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+  <div class="text-right" style="margin-right: 100px;">
+    <button class="btn btn-primary" routerLink="/address" id="checkoutbtn">Checkout</button>
+  </div>
+
+</div>
+<br><br><br><br><br>
+<app-home-footer></app-home-footer>

@@ -1,0 +1,81 @@
+<ng-container *ngIf="userRole === 'Admin'">
+  <app-admin-nav></app-admin-nav>
+</ng-container>
+
+<ng-container *ngIf="userRole === 'Supplier'">
+  <app-supplier-nav></app-supplier-nav>
+</ng-container>  <br><br><br>
+
+
+<h5 style="margin-left: 50px;">Edit Product</h5>
+<section class="articles">
+
+    <form (submit)="updateProduct()" [formGroup]="editProductForm" class="product-form">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Product Name" formControlName="product_Name">
+      </div>
+      <div>
+        <div *ngIf="editProductForm.controls['product_Name'].invalid && editProductForm.controls['product_Name'].touched" class="text-danger">
+          <div *ngIf="editProductForm.controls['product_Name'].errors?.['required']">Product Name is required</div>
+          <div *ngIf="editProductForm.controls['product_Name'].errors?.['pattern']">Enter characters and Numerics only</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Description" formControlName="description">
+      </div>
+      <div>
+        <div *ngIf="editProductForm.controls['description'].invalid && editProductForm.controls['description'].touched" class="text-danger">
+          <div *ngIf="editProductForm.controls['description'].errors?.['required']">Description is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="number" class="form-control" placeholder="Unit Price" formControlName="unitPrice">
+      </div>
+      <div>
+        <div *ngIf="editProductForm.controls['unitPrice'].invalid && editProductForm.controls['unitPrice'].touched" class="text-danger">
+          <div *ngIf="editProductForm.controls['unitPrice'].errors?.['required']">Unit Price is required</div>
+          <div *ngIf="editProductForm.controls['unitPrice'].errors?.['min']">Enter positive value</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Category" formControlName="category">
+      </div>
+      <div>
+        <div *ngIf="editProductForm.controls['category'].invalid && editProductForm.controls['category'].touched" class="text-danger">
+          <div *ngIf="editProductForm.controls['category'].errors?.['required']">Categoty is required</div>
+          <div *ngIf="editProductForm.controls['category'].errors?.['pattern']">Enter characters only</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Brand Name" formControlName="brand_Name">
+      </div>
+      <div>
+        <div *ngIf="editProductForm.controls['brand_Name'].invalid && editProductForm.controls['brand_Name'].touched" class="text-danger">
+          <div *ngIf="editProductForm.controls['brand_Name'].errors?.['required']">Brand Name is required</div>
+          <div *ngIf="editProductForm.controls['brand_Name'].errors?.['pattern']">Enter characters only</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="number" class="form-control" placeholder="Quantity" formControlName="quantityInStock">
+      </div>
+      <div>
+        <div *ngIf="editProductForm.controls['quantityInStock'].invalid && editProductForm.controls['quantityInStock'].touched" class="text-danger">
+          <div *ngIf="editProductForm.controls['quantityInStock'].errors?.['required']">Quantity is required</div>
+          <div *ngIf="editProductForm.controls['quantityInStock'].errors?.['min']">Enter positive values</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div><label>Select Product Image To Upload</label></div>
+        <input type="file" (change)="onImageSelected($event)" accept=".jpg, .jpeg, .png" formControlName="product_Image">
+      </div>
+      <div>
+        <div *ngIf="editProductForm.controls['product_Image'].invalid && editProductForm.controls['product_Image'].touched" class="text-danger">
+          <div *ngIf="editProductForm.controls['product_Image'].errors?.['required']">Product image is required</div>
+        </div>
+      </div>
+      <button class="btn btn-primary">Update Product</button>
+      <button class="btn btn-danger" routerLink="/adminProducts" style="margin-left: 30px;">Cancel</button>
+    </form>
+    <br><br>
+</section>
+

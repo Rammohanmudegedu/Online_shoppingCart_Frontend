@@ -1,0 +1,64 @@
+<app-home-nav-bar></app-home-nav-bar>
+<div class="parentContainer">
+<img src="assets/Home_Images/banner.png" alt="Landscape">
+<div class="top-left">
+</div>
+</div>
+
+<h1 style="text-align: center;"> Men & Women Fashion </h1>
+
+<section class="articles" style="text-align: center;">
+  <article *ngFor="let item of fashionUrl">
+    <div class="article-wrapper">
+      <figure>
+        <img [src]="item.imageUrl" alt="#" />
+      </figure>
+      <div class="article-body">
+        <h4>{{item.productName}}</h4>
+        <p>
+          <span class="text-danger">Price : </span>
+          &#8377; {{item.price}}
+        </p>
+        <button class="btn btn-warning">
+          <a routerLink="/login" class="text-white">Add To Cart</a>
+        </button>
+        <button class="btn btn-danger" style="margin-left: 30px;">
+          <a routerLink="/login" class="text-white">Buy Now</a>
+        </button>
+      </div>
+    </div>
+  </article>
+</section>
+
+<br> <br> <br>
+<h1 style="text-align: center;"> Electronics </h1>
+<br> <br> <br>
+
+<section class="articles" style="text-align: center;">
+  <article *ngFor="let item of electonicsUrl">
+    <div class="article-wrapper">
+      <figure>
+        <img [src]="item.imageUrl" alt="#" />
+      </figure>
+      <div class="article-body">
+        <h4>{{item.productName}}</h4>
+        <p>
+          <span class="text-danger">Price : </span>
+          &#8377; {{item.price}}
+        </p>
+        <button class="btn btn-warning">
+          <a routerLink="/login" class="text-white">Add To Cart</a>
+        </button>
+        <button class="btn btn-danger" style="margin-left: 30px;">
+          <a routerLink="/login" class="text-white">Buy Now</a>
+        </button>
+      </div>
+    </div>
+  </article>
+</section>
+
+<br> <br>
+<app-home-footer></app-home-footer>
+
+
+<!-- <app-products></app-products> -->

@@ -1,0 +1,75 @@
+<ng-container *ngIf="userEmail ==  null">
+  <app-home-nav-bar></app-home-nav-bar>
+</ng-container>
+
+<ng-container *ngIf="userEmail != null">
+  <app-user-nav-bar></app-user-nav-bar>
+</ng-container>  <br><br><br>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-md-3 mt-3">
+      <h4 class="mb-3">Categories</h4>
+      <div class="card">
+        <div class="card-body">
+          <button type="button" class="btn btn-outline-primary btn-block" (click)="filterByCategory('All')">Select All</button>
+          <button type="button" class="btn btn-outline-primary btn-block" (click)="filterByCategory('Electronics')">Electronics</button>
+          <button type="button" class="btn btn-outline-primary btn-block" (click)="filterByCategory('Accessories')">Accessories</button>
+          <button type="button" class="btn btn-outline-primary btn-block" (click)="filterByCategory('Clothing')">Clothing</button>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-9">
+      <div class="container mt-3">
+        <div class="row">
+          <div class="col-md-6">
+            <form [formGroup]="searchForm" (ngSubmit)="searchProducts()" class="mt-3 mb-3">
+              <div class="input-group">
+                <input type="text" class="form-control" formControlName="searchTerm" placeholder="Search products" (input)="searchProducts()">
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <section class="articles">
+          <article *ngFor="let product of products">
+            <div class="article-wrapper">
+              <figure>
+                <img [src]="'https://localhost:44366/api/Products/GetProductImage/' + product.productId" alt="{{ product.product_Name }}" />
+              </figure>
+              <div class="article-body">
+                <h2>{{product.product_Name}}</h2>
+                <p style="margin-bottom: -2px;">
+                  <span class="text-danger">Price : </span>
+                  &#8377; {{product.unitPrice}}.00
+                </p>
+                <p *ngIf="product.quantityInStock === 0" class="text-danger" style="margin-bottom: 3px;">Product not available in stock</p>
+
+                <ng-template *ngIf="product.quantityInStock === 0; else inStock">
+                </ng-template>
+                <ng-template #inStock>
+                  <br>
+                </ng-template>
+
+
+
+
+                <button class="btn btn-warning" [routerLink]="['/productDetails', product.productId]" style="margin-right: 10px;">View Details</button>
+                <button class="btn btn-danger" (click)="addToCart(product)" [disabled]="product.quantityInStock === 0">Add to Cart</button>
+
+              </div>
+            </div>
+          </article>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br><br><br><br><br>
+<app-home-footer></app-home-footer>
+

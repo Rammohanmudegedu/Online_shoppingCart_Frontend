@@ -1,0 +1,38 @@
+<ng-container *ngIf="userRole === 'Admin'">
+  <app-admin-nav></app-admin-nav>
+</ng-container>
+
+<ng-container *ngIf="userRole === 'Supplier'">
+  <app-supplier-nav></app-supplier-nav>
+</ng-container>  <br><br><br>
+
+<button class="btn btn-success" style="margin-left: 50px; font-weight: bold;"
+        routerLink="/addNewProduct">+ Add Products</button> <br> <br>
+
+
+<section class="articles">
+
+  <article *ngFor="let product of products">
+    <div class="article-wrapper">
+      <figure>
+        <img [src]="'https://localhost:44366/api/Products/GetProductImage/' + product.productId" alt="{{ product.product_Name }}" />
+      </figure>
+      <div class="article-body">
+        <h2>{{product.product_Name}}</h2>
+        <p>
+          <span class="text-danger">Price : </span>
+          &#8377; {{product.unitPrice}}.00
+        </p>
+        <p [class.text-danger]="product.quantityInStock === 0">Quantity in stock : {{product.quantityInStock}}</p>
+
+
+        <button class="btn btn-warning" [routerLink]="['/adproductDetails', product.productId]">View Details</button>
+
+
+      </div>
+    </div>
+  </article>
+</section>
+
+<br><br><br><br><br>
+<app-home-footer></app-home-footer>

@@ -1,0 +1,47 @@
+<app-user-nav-bar></app-user-nav-bar> <br><br><br>
+
+<div class="container"> <br>
+  <h2>Enter details to place you order</h2> <br>
+  <form [formGroup]="orderForm" (ngSubmit)="placeOrder()">
+    <div class="form-group">
+      <div>
+      <label for="address">Address:</label>
+      <input type="text" id="address" name="address" placeholder="Enter your address" formControlName="address">
+      </div>
+
+        <div>
+          <div *ngIf="orderForm.controls['address'].invalid && orderForm.controls['address'].touched" class="text-danger">
+          <div *ngIf="orderForm.controls['address'].errors?.['required']">Address is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div>
+      <label for="zipcode">Zipcode:</label>
+      <input type="text" id="zipcode" name="zipcode" placeholder="Enter your zipcode" formControlName="zipcode">
+      </div>
+      <div>
+        <div *ngIf="orderForm.controls['zipcode'].invalid && orderForm.controls['zipcode'].touched" class="text-danger">
+        <div *ngIf="orderForm.controls['zipcode'].errors?.['required']">Zipcode is required</div>
+        <div *ngIf="orderForm.controls['zipcode'].errors?.['pattern']">Enter valid zipcode</div>
+      </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div>
+      <label for="city">City:</label>
+      <input type="text" id="city" name="city" placeholder="Enter your city" formControlName="city">
+      </div>
+      <div>
+        <div *ngIf="orderForm.controls['city'].invalid && orderForm.controls['city'].touched" class="text-danger">
+        <div *ngIf="orderForm.controls['city'].errors?.['required']">City is required</div>
+        <div *ngIf="orderForm.controls['city'].errors?.['pattern']">Enter characters only</div>
+      </div>
+      </div>
+    </div>
+    <input type="submit" value="Place Order">
+  </form>
+</div>
+
+<br><br><br><br><br>
+<app-home-footer></app-home-footer>

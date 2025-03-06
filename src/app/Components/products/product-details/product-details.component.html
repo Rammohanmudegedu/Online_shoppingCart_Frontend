@@ -1,0 +1,33 @@
+<ng-container *ngIf="userEmail ==  null">
+  <app-home-nav-bar></app-home-nav-bar>
+</ng-container>
+
+<ng-container *ngIf="userEmail != null">
+  <app-user-nav-bar></app-user-nav-bar>
+</ng-container>  <br><br><br>
+<h4 style="margin-left: 100px;">product details</h4> <br>
+
+<div class="row" *ngIf="product">
+
+  <div class="col-md-6">
+
+    <img [src]="'https://localhost:44366/api/Products/GetProductImage/' + product.productId" alt="{{ product.product_Name }}" />
+  </div>
+
+  <div class="col-md-6">
+    <h5>Product Name : {{ product.product_Name }}</h5>
+    <p>
+      <span class="text-danger">Price : </span>
+      &#8377; {{ product.unitPrice }}.00
+    </p>
+    <p>Brand : {{product.brand_Name}}</p>
+    <p>description : {{product.description}}</p>
+
+    <button class="btn btn-danger" (click)="addToCart(product)" [disabled]="product.quantityInStock === 0">Add to Cart</button> <br> <br>
+    <p *ngIf="product.quantityInStock === 0" class="text-danger" style="font-weight: bold;">Product not available in stock</p>
+  </div>
+</div>
+
+<br><br><br><br><br>
+<app-home-footer></app-home-footer>
+

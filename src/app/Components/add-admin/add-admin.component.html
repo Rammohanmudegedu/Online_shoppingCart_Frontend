@@ -1,0 +1,105 @@
+<app-admin-nav></app-admin-nav>
+
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Knewave' rel='stylesheet'>
+
+</head>
+<body>
+  <div class="container-fluid px-1 px-md-5 px-lg-1 mx-auto">
+      <div class="card card0 border-0">
+          <div class="row d-flex">
+              <div class="col-lg-6">
+                <a routerLink="" class="navbar-brand text-black">
+                  <span style="font-weight:bold; font-size: 2em; margin: 100px;"></span> </a>
+                  <div class="card1 pb-5">
+                      <br><br> <br>
+                      <div class="row px-3 justify-content-center mt-4 mb-5 border-line">
+                          <img src="assets/SignInUPpage_Images/AdminPhoto.jpg" class="image" style="width:600px; height:350px">
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-5">
+                  <div class="card2 card border-0 px-4 py-5">
+
+                    <br><br>
+
+                      <div class="row px-3 mb-4">
+
+                          <b style="text-align:center">Add New Admin</b>
+                      </div>
+                      <div class="signup">
+
+                              <form [formGroup]="signupForm" (ngSubmit)="signUp()">
+                                  <div class="row px-3">
+                                      <label class="mb-1"><h6 class="mb-0 text-sm">Email Address</h6></label>
+
+                                      <input type="email" name="email" placeholder="Email" formControlName="email">
+                                  </div>
+                                  <div>
+                                      <div *ngIf="signupForm.controls['email'].invalid && signupForm.controls['email'].touched" class="text-danger">
+                                      <div *ngIf="signupForm.controls['email'].errors?.['required']">Email is required</div>
+                                      <div *ngIf="signupForm.controls['email'].errors?.['email']">Invalid email format</div>
+                                    </div>
+                                  </div>
+                                  <br />
+                                  <div class="row px-3">
+                                      <label class="mb-1"><h6 class="mb-0 text-sm">User Name</h6></label>
+
+                                      <input type="text" name="text" placeholder="User Name" formControlName="username">
+                                  </div>
+                                  <div>
+                                    <div *ngIf="signupForm.controls['username'].invalid && signupForm.controls['username'].touched" class="text-danger">
+                                      <div *ngIf="signupForm.controls['username'].errors?.['required']">Username is required</div>
+                                      <div *ngIf="signupForm.controls['username'].errors?.['pattern']">Enter characters only</div>
+                                    </div>
+                                  </div>
+
+                                    <br />
+                                  <div class="row px-3">
+                                      <label class="mb-1"><h6 class="mb-0 text-sm">Phone</h6></label>
+
+                                      <input type="text" name="number" placeholder="Phone" formControlName="phone">
+                                  </div>
+                                  <div>
+                                    <div *ngIf="signupForm.controls['phone'].invalid && signupForm.controls['phone'].touched" class="text-danger">
+                                      <div *ngIf="signupForm.controls['phone'].errors?.['required']">Phone is required</div>
+                                      <div *ngIf="signupForm.controls['phone'].errors?.['pattern']">Please enter a valid phone number</div>
+                                    </div>
+                                  </div>
+                                    <br />
+                                  <div class="row px-3">
+                                      <label class="mb-1"><h6 class="mb-0 text-sm">Password</h6></label>
+
+                                      <input type="password" name="pswd" placeholder="Password" formControlName="password">
+                                  </div>
+                                  <div>
+                                    <div *ngIf="signupForm.controls['password'].invalid && signupForm.controls['password'].touched" class="text-danger">
+                                      <div *ngIf="signupForm.controls['password'].errors?.['required']">Password is required</div>
+                                      <div *ngIf="signupForm.controls['password'].errors?.['pattern']">Password must contain: Minimum 8 characters, at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character</div>
+                                      <div *ngIf="signupForm.controls['password'].errors?.['minlength']">Password must be at least 8 characters long</div>
+                                    </div>
+                                  </div>
+                                  <br>
+
+                                  <div class="row mb-3 px-3">
+
+                                      <button class="btn btn-blue text-center">Add Admin</button>
+                                  </div>
+                                  <div>
+
+                                  </div>
+                              </form>
+
+                      </div>
+
+
+                  </div>
+              </div>
+          </div>
+
+      </div>
+  </div>
+</body>
+
+<app-home-footer></app-home-footer>
+

@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+
+    <a class="navbar-brand"><b>Shopping Cart</b></a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/products">
+          Products
+        </a>
+      </li>
+    </ul>
+
+    <div class="collapse navbar-collapse justify-content-end">
+      <ul class="navbar-nav">
+
+        <li class="nav-item" style="margin-right: 30px;">
+          <select class="form-select btn btn-secondary bg-dark border-0" (change)="onSelectionChange($event)">
+            <option value="" selected disabled>{{userEmail}}</option>
+            <option value="my-orders">My Orders</option>
+          </select>
+        </li>
+
+
+
+        <li class="nav-item" >
+          <a class="nav-link" routerLink="/cart" style="background-color: red; color: white; border-radius: 50px; font-weight: bold;">
+            <i class="fas fa-shopping-cart"></i> <span>{{ cartItemCount }}</span>
+
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="" (click)="Logout()">
+            Logout <i class="bi bi-box-arrow-right"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

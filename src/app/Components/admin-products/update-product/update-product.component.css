@@ -1,0 +1,33 @@
+.articles {
+  display: flex;
+  height: 100vh;
+  margin-left: 50px;
+}
+
+.editProduct {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 400px;
+}
+
+.product-form {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+button{
+  border-radius: 40px;
+}
